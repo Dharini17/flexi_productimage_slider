@@ -61,6 +61,12 @@
          <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/14.png">
       </td>          
     </tr>
+<tr>
+ <td>
+         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/15.png">
+      </td>  
+      <td></td>          
+    </tr>
 </table>
 
 ## Installation
@@ -110,6 +116,9 @@ import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
                 
                 //set color of current image thumbnail border
                 thumbnailBorderColor: Colors.deepOrangeAccent,
+
+                //set radius of your (thumbnailShape)custom thumbnail
+                thumbnailBorderRadius: 10,
                 
                 //make you action when user click on image
                 onTap: (index){

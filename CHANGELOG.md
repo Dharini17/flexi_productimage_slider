@@ -1,3 +1,6 @@
+## 1.0.6
+- Now we can set thumbnail border radius
+
 ## 1.0.5
 - more thumbnail customization functions & onTap access on image
 

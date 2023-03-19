@@ -17,6 +17,7 @@ class flexiProductimageSlider extends StatelessWidget{
   final double? thumbnailWidth;
   final double? thumbnailHeight;
   final Color? thumbnailBorderColor;
+  final double? thumbnailBorderRadius;
   final SliderStyle? sliderStyle;
   final Function? onTap;
 
@@ -29,6 +30,7 @@ class flexiProductimageSlider extends StatelessWidget{
     this.thumbnailWidth = 40,
     this.thumbnailHeight = 40,
     this.thumbnailBorderColor = Colors.blueGrey,
+    this.thumbnailBorderRadius = 0.0,
     this.sliderStyle,
     this.onTap,
   });
@@ -183,14 +185,14 @@ class flexiProductimageSlider extends StatelessWidget{
                           height:thumbnailHeight,
                           width: thumbnailWidth,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ?  (thumbnailHeight!/2) : 0),
-                              border: currIndexValue != index ? Border.all(width: 0 ,color: Colors.transparent) : Border.all(width: 1,color: thumbnailBorderColor!)
+                              borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ?  (thumbnailHeight!/2) : thumbnailBorderRadius!),
+                              border: currIndexValue != index ? Border.all(width: 1 ,color: Colors.transparent) : Border.all(width: 1,color: thumbnailBorderColor!),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ? (thumbnailHeight!/2) : 0),
-                            child: Padding(
-                              padding: EdgeInsets.all(thumbnailShape == ThumbnailShape.circle ? 0 : 5),
-                              child: funcDisplayImage(arrayImages[index],boxFit!),
+                          child: Padding(
+                            padding: EdgeInsets.all(thumbnailShape == ThumbnailShape.circle ? 0 : 5),
+                            child:ClipRRect(
+                            borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ? (thumbnailHeight!/2) : thumbnailBorderRadius!),
+                            child:  funcDisplayImage(arrayImages[index],boxFit!),
                             ),
                           ),
                         );

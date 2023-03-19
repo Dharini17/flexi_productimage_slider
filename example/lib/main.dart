@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // optional fields
 
                 //set where you want to set your thumbnail
-                sliderStyle: SliderStyle.overSlider,//SliderStyle.nextToSlider
+                sliderStyle: SliderStyle.nextToSlider,//SliderStyle.nextToSlider
 
                 // set you slider height like 1.0,1.5,2.0 etc...
                 aspectRatio: 0.8,
@@ -87,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 boxFit: BoxFit.cover,
 
                 //set your thumbnail alignment & shape
-                thumbnailAlignment: ThumbnailAlignment.right,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
-                thumbnailShape: ThumbnailShape.circle,//ThumbnailShape.circle
+                thumbnailAlignment: ThumbnailAlignment.bottom,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
+                thumbnailShape: ThumbnailShape.custom,//.circle , .custom
 
                //set your thumbnail height & width
                 //NOTE : if you set ThumbnailShape.circle then set thumbnail width height same
@@ -96,7 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 thumbnailHeight: 65,
 
                 //set color of current image thumbnail border
-                thumbnailBorderColor: Colors.deepOrangeAccent,
+                thumbnailBorderColor: Colors.blue,
+
+                //set radius of your (thumbnailShape)custom thumbnail
+                thumbnailBorderRadius: 10,
 
                 //make you action when user click on image
                 onTap: (index){
