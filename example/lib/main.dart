@@ -77,6 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 //set content mode of image
                 boxFit: BoxFit.cover,
 
+                //set this if you want to set any default image index when it loads
+                selectedImagePosition: 0,
+
                 //set your thumbnail alignment in slider
                 thumbnailAlignment: ThumbnailAlignment.left,//.right , .bottom
                 thumbnailBorderType: ThumbnailBorderType.all,//.bottom, .all

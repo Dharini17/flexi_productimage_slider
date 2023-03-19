@@ -1,3 +1,6 @@
+## 1.0.8
+- set default image position 
+
 ## 1.0.7
 - set thumbnail image in any shape without limitation 
 

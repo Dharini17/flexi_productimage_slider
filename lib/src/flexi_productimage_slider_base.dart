@@ -20,6 +20,7 @@ class flexiProductimageSlider extends StatelessWidget{
   final double? thumbnailBorderWidth;
   final SliderStyle? sliderStyle;
   final Function? onTap;
+  final int? selectedImagePosition;
 
   flexiProductimageSlider({
     required this.arrayImages,
@@ -34,6 +35,7 @@ class flexiProductimageSlider extends StatelessWidget{
     this.thumbnailBorderWidth = 1,
     this.sliderStyle,
     this.onTap,
+    this.selectedImagePosition = 0,
   });
 
   double paddingOfBorder = 3;
@@ -42,6 +44,12 @@ class flexiProductimageSlider extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
+    currentPageViewPage = ValueNotifier(selectedImagePosition!);
+
+    Future.delayed(const Duration(milliseconds: 3), () {
+      pageController.jumpToPage(selectedImagePosition!);
+    });
 
     return  buildContent();
   }

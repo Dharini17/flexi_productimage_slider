@@ -61,16 +61,19 @@ import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
         // optional fields
         
         //set where you want to set your thumbnail
-        sliderStyle: SliderStyle.nextToSlider,//SliderStyle.nextToSlider
+        sliderStyle: SliderStyle.nextToSlider,//.overSlider, .nextToSlider
         
         // set you slider height like 1.0,1.5,2.0 etc...
         aspectRatio: 0.8,
         
         //set content mode of image
         boxFit: BoxFit.cover,
+
+        //set this if you want to set any default image index when it loads
+        selectedImagePosition: 0,
         
         //set your thumbnail alignment 
-        thumbnailAlignment: ThumbnailAlignment.bottom,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
+        thumbnailAlignment: ThumbnailAlignment.bottom,//.right , .left, .bottom
 
         //set how selected thumbnail border displayed
         thumbnailBorderType: ThumbnailBorderType.all,//.bottom, .all
