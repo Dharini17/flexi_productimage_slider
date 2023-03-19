@@ -1,6 +1,6 @@
+import 'package:flexi_productimage_slider/src/ZoomView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 enum ThumbnailPosition { LEFT, RIGHT, BOTTOM }
@@ -138,8 +138,7 @@ class flexi_productimage_slider extends StatelessWidget{
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GalleryZoomSlides(
-                          arrayImages,index)));
+                      builder: (context) => ZoomView(arrayImages : arrayImages,currentIndex : index)));
             },
             child: funcDisplayImage(arrayImages[index],boxFit),
           );

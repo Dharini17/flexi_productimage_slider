@@ -52,9 +52,23 @@
          <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/12.png">
       </td> 
     </tr>
+<tr>
+      <td>
+         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/13.png">
+      </td>          
+    </tr>
 </table>
 
-## Getting started
+## Installation
+
+  In your `pubspec.yaml` file within your Flutter Project:
+
+```yaml
+dependencies:
+  flexi_productimage_slider: <latest_version>
+```
+
+## Usage
 
     aspectRatio : set this value as per your image ratio
     
@@ -66,18 +80,6 @@
 
     sliderStyle : Style1 : display thumbnails on the image (left , right , bottom)
                   Style2 : display thumbnails next to image (left , right , bottom)
-
-## Installation
-
-  In your `pubspec.yaml` file within your Flutter Project:
-
-```yaml
-dependencies:
-  flexi_productimage_slider: <latest_version>
-```
-
-
-## Usage
 
 ```dart
 
