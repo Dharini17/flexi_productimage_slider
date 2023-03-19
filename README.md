@@ -4,8 +4,9 @@
 
 ## Features
 
- - set image slider with its rest of the thumbnails 
- - it provides 2 style and each contains square & circle thumbnail with 3 styles
+ - Slide your products with thumbnail 
+ - set your thumbnail in various shapes,custom sizes, custom selected color
+ - perform your action on click on image
 
 <table>
    <tr>
@@ -54,10 +55,10 @@
     </tr>
 <tr>
  <td>
-         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/12_1.png">
+         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/13.png">
       </td>  
       <td>
-         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/13.png">
+         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/14.png">
       </td>          
     </tr>
 </table>
@@ -68,50 +69,55 @@
 
 ```yaml
 dependencies:
-  flexi_productimage_slider: <latest_version>
+  flexi_productimage_slider: 1.0.5
 ```
-
-## Usage
-
-    aspectRatio : set this value as per your image ratio
-    
-    boxFit : how your image should fit in box
-
-    thumbnailPosition : where you want present the rest of the images to end user
-
-    thumbnailShape : set thumbnail shapes - sqaure , circle , rectangle
-
-    thumbnailWidth: set thumbnail width
-
-    selectedThumbnailBorder: set thumbnail border
-
-    sliderStyle : Style1 : display thumbnails on the image (left , right , bottom)
-                  Style2 : display thumbnails next to image (left , right , bottom)
 
 ```dart
 
 import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
 
-            flexi_productimage_slider(
-                        arrayImages: [
-                        "https://i.ibb.co/bFx0p10/7.jpg",
-                        "https://i.ibb.co/SPwd6rJ/8.jpg",
-                        "https://i.ibb.co/GP2GFTG/6.jpg",
-                        "https://i.ibb.co/s3JYgx1/5.jpg",
-                        ],
-                        aspectRatio: 16/9,
-                        boxFit: BoxFit.cover,
-                        thumbnailPosition: ThumbnailPosition.LEFT,
-                        thumbnailShape: ThumbnailShape.Rectangle,
-                        thumbnailWidth: 50,
-                        selectedThumbnailBorder: Border.all(width: 1.5,color: Colors.teal),
-                        sliderStyle: SliderStyle.Style2,
-            ),
+        flexiProductimageSlider(
+        
+                //required fields
+                arrayImages: const [
+                "https://i.ibb.co/ZLFHX3F/1.png",
+                "https://i.ibb.co/JKJvs5S/2.png",
+                "https://i.ibb.co/LCzV7b3/3.png",
+                "https://i.ibb.co/L8JHn1L/4.png",
+                "https://i.ibb.co/7RWNCXH/5.png",
+                "https://i.ibb.co/bBsh5Pm/6.png",
+                ],
+                
+                // optional fields
+                
+                //set where you want to set your thumbnail
+                sliderStyle: SliderStyle.overSlider,//SliderStyle.nextToSlider
+                
+                // set you slider height like 1.0,1.5,2.0 etc...
+                aspectRatio: 0.8,
+                
+                //set content mode of image
+                boxFit: BoxFit.cover,
+                
+                //set your thumbnail alignment & shape
+                thumbnailAlignment: ThumbnailAlignment.right,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
+                thumbnailShape: ThumbnailShape.circle,//ThumbnailShape.circle
+                
+                //set your thumbnail height & width
+                //NOTE : if you set ThumbnailShape.circle then set thumbnail width height same
+                thumbnailWidth: 50,
+                thumbnailHeight: 65,
+                
+                //set color of current image thumbnail border
+                thumbnailBorderColor: Colors.deepOrangeAccent,
+                
+                //make you action when user click on image
+                onTap: (index){
+                      print("selected index : $index");
+                },
+        ),
         ...
 
 
 ```
-
-## Additional information
-
-Images used for example is just for a demo purpose.
+NOTE : Images taken only for demo purpose

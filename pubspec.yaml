@@ -1,16 +1,15 @@
 name: flexi_productimage_slider
 description: An image slider to represent your products..:)
-version: 1.0.4
+version: 1.0.5
 repository: https://github.com/Dharini17/flexi_productimage_slider
-documentation: https://pub.dev/documentation/flexi_productimage_slider/latest/
+documentation: https://pub.dev/documentation/flexi_productimage_slider
 
 environment:
-  sdk: '>=2.19.3 <3.0.0'
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  gallery_zoom_slides: ^0.0.3
   cached_network_image: ^3.2.3
 
 dev_dependencies:

@@ -63,20 +63,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
             const SizedBox(height: 10,),
 
-            flexi_productimage_slider(
-                arrayImages: [
-                  "https://i.ibb.co/bFx0p10/7.jpg",
-                  "https://i.ibb.co/SPwd6rJ/8.jpg",
-                  "https://i.ibb.co/GP2GFTG/6.jpg",
-                  "https://i.ibb.co/s3JYgx1/5.jpg",
+            flexiProductimageSlider(
+
+              //required fields
+                arrayImages: const [
+                "https://i.ibb.co/ZLFHX3F/1.png",
+                "https://i.ibb.co/JKJvs5S/2.png",
+                "https://i.ibb.co/LCzV7b3/3.png",
+                "https://i.ibb.co/L8JHn1L/4.png",
+                "https://i.ibb.co/7RWNCXH/5.png",
+                "https://i.ibb.co/bBsh5Pm/6.png",
                 ],
-                aspectRatio: 16/9,
+
+                // optional fields
+
+                //set where you want to set your thumbnail
+                sliderStyle: SliderStyle.overSlider,//SliderStyle.nextToSlider
+
+                // set you slider height like 1.0,1.5,2.0 etc...
+                aspectRatio: 0.8,
+
+                //set content mode of image
                 boxFit: BoxFit.cover,
-                thumbnailPosition: ThumbnailPosition.LEFT,
-                thumbnailShape: ThumbnailShape.Rectangle,
+
+                //set your thumbnail alignment & shape
+                thumbnailAlignment: ThumbnailAlignment.right,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
+                thumbnailShape: ThumbnailShape.circle,//ThumbnailShape.circle
+
+               //set your thumbnail height & width
+                //NOTE : if you set ThumbnailShape.circle then set thumbnail width height same
                 thumbnailWidth: 50,
-                selectedThumbnailBorder: Border.all(width: 1.5,color: Colors.teal),
-                sliderStyle: SliderStyle.Style2,
+                thumbnailHeight: 65,
+
+                //set color of current image thumbnail border
+                thumbnailBorderColor: Colors.deepOrangeAccent,
+
+                //make you action when user click on image
+                onTap: (index){
+                  print("selected index : $index");
+                },
              ),
 
 

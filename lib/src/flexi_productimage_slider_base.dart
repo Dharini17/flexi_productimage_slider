@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 
-enum ThumbnailPosition { LEFT, RIGHT, BOTTOM }
+enum ThumbnailAlignment { left, right, bottom }
 
-enum ThumbnailShape { Circle, Square, Rectangle }
+enum ThumbnailShape { circle, custom }
 
-enum SliderStyle { Style1, Style2, }
+enum SliderStyle { overSlider, nextToSlider, }
 
-class flexi_productimage_slider extends StatelessWidget{
+class flexiProductimageSlider extends StatelessWidget{
 
   final List<String> arrayImages;
-  final double aspectRatio;
-  final BoxFit boxFit;
-  final ThumbnailPosition thumbnailPosition;
-  final ThumbnailShape thumbnailShape;
-  final double thumbnailWidth;
-  final Border selectedThumbnailBorder;
-  final SliderStyle sliderStyle;
+  final double? aspectRatio;
+  final BoxFit? boxFit;
+  final ThumbnailAlignment? thumbnailAlignment;
+  final ThumbnailShape? thumbnailShape;
+  final double? thumbnailWidth;
+  final double? thumbnailHeight;
+  final Color? thumbnailBorderColor;
+  final SliderStyle? sliderStyle;
+  final Function? onTap;
 
-  flexi_productimage_slider({
+  flexiProductimageSlider({
     required this.arrayImages,
-    required this.aspectRatio,
-    required this.boxFit,
-    required this.thumbnailPosition,
-    required this.thumbnailShape,
-    required this.thumbnailWidth,
-    required this.selectedThumbnailBorder,
-    required this.sliderStyle,
+    this.aspectRatio = 16/9,
+    this.boxFit = BoxFit.fill,
+    this.thumbnailAlignment = ThumbnailAlignment.left,
+    this.thumbnailShape = ThumbnailShape.custom,
+    this.thumbnailWidth = 40,
+    this.thumbnailHeight = 40,
+    this.thumbnailBorderColor = Colors.blueGrey,
+    this.sliderStyle,
+    this.onTap,
   });
 
   PageController pageController = PageController(initialPage: 0,);
@@ -36,97 +39,98 @@ class flexi_productimage_slider extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    return  AspectRatio( aspectRatio: aspectRatio,
-      child: _buildContent(),
-    );
+    return  buildContent();
   }
 
-  Widget _buildContent(){
+  Widget buildContent(){
 
     switch (sliderStyle){
 
-      case SliderStyle.Style1: return _buildStyle1();
+      case SliderStyle.overSlider: return buildTheme1();
 
-      case SliderStyle.Style2: return _buildStyle2();
+      case SliderStyle.nextToSlider: return buildTheme2();
 
-      default: return _buildStyle1();
+      default: return buildTheme1();
 
     }
 
   }
 
-  Widget _buildStyle1(){
-    return Stack(
+  Widget buildTheme1(){
+    return AspectRatio( aspectRatio: aspectRatio!,
+              child:Stack(
       children: [
 
         Positioned.fill(
-            child: _buildImageSlider()
+            child: buildImageSlider()
         ),
 
-        thumbnailPosition == ThumbnailPosition.BOTTOM ?
+        thumbnailAlignment == ThumbnailAlignment.bottom ?
 
         Positioned(
             left: 0,bottom: 5,right: 0,
-            child: _buildThumbnail(isVertical: false)
+            child: buildThumbnail(isVertical: false)
         ) :
 
-        thumbnailPosition == ThumbnailPosition.LEFT ?
+        thumbnailAlignment == ThumbnailAlignment.left ?
 
         Positioned(
             top: 5,left: 10,bottom: 5,
-            child: _buildThumbnail(isVertical: true)
+            child: buildThumbnail(isVertical: true)
         )
             :
         Positioned(
             top: 5,right: 10,bottom: 5,
-            child: _buildThumbnail(isVertical: true)
+            child: buildThumbnail(isVertical: true)
         )
 
 
       ],
-    );
+    ));
   }
 
-  Widget _buildStyle2(){
+  Widget buildTheme2(){
     return
 
+      thumbnailAlignment == ThumbnailAlignment.bottom ?
+    Column(
+      children: [
+
+      AspectRatio( aspectRatio: aspectRatio!,
+      child:buildImageSlider(),
+      ),
+
+
+        Padding(padding: EdgeInsets.only(top: 5,bottom: 5),
+          child: buildThumbnail(isVertical: false),
+        )
+
+      ],
+    ):
+      AspectRatio( aspectRatio: aspectRatio!,
+          child:
       Row(
         children: [
 
-          thumbnailPosition == ThumbnailPosition.LEFT ?
+          thumbnailAlignment == ThumbnailAlignment.left ?
           Padding(padding: EdgeInsets.only(left: 5,right: 5),
-            child: _buildThumbnail(isVertical: true),
+            child: buildThumbnail(isVertical: true),
           ) : const SizedBox(),
 
           Expanded(
-              child:
-
-              Column(
-                children: [
-
-                  Expanded(
-                    child: _buildImageSlider(),
-                  ),
-
-                  thumbnailPosition == ThumbnailPosition.BOTTOM ?
-
-                  Padding(padding: EdgeInsets.only(top: 5,bottom: 5),
-                    child: _buildThumbnail(isVertical: false),
-                  ) : const SizedBox(),
-                ],
-              )
+              child:  buildImageSlider(),
           ),
 
-          thumbnailPosition == ThumbnailPosition.RIGHT ?
+          thumbnailAlignment == ThumbnailAlignment.right ?
           Padding(padding: EdgeInsets.only(left: 5,right: 5),
-            child: _buildThumbnail(isVertical: true),
+            child: buildThumbnail(isVertical: true),
           ) : const SizedBox(),
 
         ],
-      );
+      ));
   }
 
-  Widget _buildImageSlider(){
+  Widget buildImageSlider(){
     return PageView.builder(
       controller:pageController,
       onPageChanged: (int currentPage){
@@ -141,25 +145,18 @@ class flexi_productimage_slider extends StatelessWidget{
         return
 
           InkWell(
-            onTap: (){
-
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => gallery_zoom_slides(arrayImages: arrayImages, currentIndex: index)));
-
-              },
-            child: funcDisplayImage(arrayImages[index],boxFit),
+            onTap: ()=> onTap!(index),
+            child: funcDisplayImage(arrayImages[index],boxFit!),
           );
 
       },
     );
   }
 
-  Widget _buildThumbnail({required bool isVertical}){
+  Widget buildThumbnail({required bool isVertical}){
     return Container(
-      width: isVertical ? 50 : double.infinity,
-      height: isVertical ? double.infinity : 55,
+       width: isVertical ? thumbnailWidth! + 10 : double.infinity,
+      height: isVertical ? double.infinity : thumbnailHeight! + 10,
       child: ListView.builder(
 
         scrollDirection: isVertical ? Axis.vertical : Axis.horizontal,
@@ -183,14 +180,18 @@ class flexi_productimage_slider extends StatelessWidget{
                       builder: (BuildContext context, currIndexValue, child) {
 
                         return Container(
-                          height:thumbnailShape == ThumbnailShape.Rectangle ? (thumbnailWidth + (thumbnailWidth/2)) : thumbnailWidth ,width: thumbnailWidth,
+                          height:thumbnailHeight,
+                          width: thumbnailWidth,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ?  (45/2) : 0),
-                              border: currIndexValue != index ? Border.all(width: 0 ,color: Colors.transparent) : selectedThumbnailBorder
+                              borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ?  (thumbnailHeight!/2) : 0),
+                              border: currIndexValue != index ? Border.all(width: 0 ,color: Colors.transparent) : Border.all(width: 1,color: thumbnailBorderColor!)
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ? (45/2) : 0),
-                            child: funcDisplayImage(arrayImages[index],boxFit),
+                            borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.circle ? (thumbnailHeight!/2) : 0),
+                            child: Padding(
+                              padding: EdgeInsets.all(thumbnailShape == ThumbnailShape.circle ? 0 : 5),
+                              child: funcDisplayImage(arrayImages[index],boxFit!),
+                            ),
                           ),
                         );
                       })
@@ -210,7 +211,7 @@ class flexi_productimage_slider extends StatelessWidget{
   static CachedNetworkImage funcDisplayImage(String strImageURL, BoxFit varBoxType) {
 
     return CachedNetworkImage(
-      imageUrl: "$strImageURL",
+      imageUrl: strImageURL,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           image: DecorationImage(

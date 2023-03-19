@@ -1,4 +1,7 @@
-## 1.0.4
+## 1.0.5
+- more thumbnail customization functions & onTap access on image
+
+## 1.0.4 
 
 - Now differentiate selected thumbnail
 
