@@ -87,9 +87,11 @@ import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
 
         flexi_productimage_slider(
                     arrayImages: [
-                                "https://thumbs.dreamstime.com/b/mauve-flower-composition-1-690383.jpg",
-                                "https://c4.wallpaperflare.com/wallpaper/226/777/282/beautiful-flower-wallpaper-hd-free-download-1704-wallpaper-preview.jpg",
-                                ],
+                                    "https://i.ibb.co/bFx0p10/7.jpg",
+                                    "https://i.ibb.co/SPwd6rJ/8.jpg",
+                                    "https://i.ibb.co/GP2GFTG/6.jpg",
+                                    "https://i.ibb.co/s3JYgx1/5.jpg",
+                                  ],
                     aspectRatio: 16/9,
                     boxFit: BoxFit.cover,
                     thumbnailPosition: ThumbnailPosition.LEFT,
