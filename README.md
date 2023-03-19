@@ -81,6 +81,8 @@ dependencies:
 
     thumbnailShape : set thumbnail shapes either sqaure or circle
 
+    thumbnailWidth: set thumbnail width
+
     sliderStyle : Style1 : display thumbnails on the image (left , right , bottom)
                   Style2 : display thumbnails next to image (left , right , bottom)
 
@@ -99,6 +101,7 @@ import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
                     boxFit: BoxFit.cover,
                     thumbnailPosition: ThumbnailPosition.LEFT,
                     thumbnailShape: ThumbnailShape.Circle,
+                    thumbnailWidth: 50,
                     sliderStyle: SliderStyle.Style2
         ),
         ...

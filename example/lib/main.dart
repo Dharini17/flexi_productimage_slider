@@ -72,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 boxFit: BoxFit.cover,
                 thumbnailPosition: ThumbnailPosition.LEFT,
                 thumbnailShape: ThumbnailShape.Rectangle,
-
-                thumbnailWidth: 50, sliderStyle: SliderStyle.Style2,
+                thumbnailWidth: 50,
+                sliderStyle: SliderStyle.Style2,
              ),
 
 
