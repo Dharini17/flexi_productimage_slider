@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
+import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 
 void main() async {
 
@@ -35,17 +36,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
-  @override
-  void initState() {
-    super.initState();
-
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+ List<String> arrayImages = const [
+   "https://i.ibb.co/ZLFHX3F/1.png",
+   "https://i.ibb.co/JKJvs5S/2.png",
+   "https://i.ibb.co/LCzV7b3/3.png",
+   "https://i.ibb.co/L8JHn1L/4.png",
+   "https://i.ibb.co/7RWNCXH/5.png",
+   "https://i.ibb.co/bBsh5Pm/6.png",
+ ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,19 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
             flexiProductimageSlider(
 
               //required fields
-                arrayImages: const [
-                "https://i.ibb.co/ZLFHX3F/1.png",
-                "https://i.ibb.co/JKJvs5S/2.png",
-                "https://i.ibb.co/LCzV7b3/3.png",
-                "https://i.ibb.co/L8JHn1L/4.png",
-                "https://i.ibb.co/7RWNCXH/5.png",
-                "https://i.ibb.co/bBsh5Pm/6.png",
-                ],
+                arrayImages: arrayImages,
 
                 // optional fields
 
                 //set where you want to set your thumbnail
-                sliderStyle: SliderStyle.nextToSlider,//SliderStyle.nextToSlider
+                sliderStyle: SliderStyle.overSlider,//.nextToSlider
 
                 // set you slider height like 1.0,1.5,2.0 etc...
                 aspectRatio: 0.8,
@@ -86,24 +77,41 @@ class _MyHomePageState extends State<MyHomePage> {
                 //set content mode of image
                 boxFit: BoxFit.cover,
 
-                //set your thumbnail alignment & shape
-                thumbnailAlignment: ThumbnailAlignment.bottom,//ThumbnailAlignment.right , ThumbnailAlignment.bottom
-                thumbnailShape: ThumbnailShape.custom,//.circle , .custom
+                //set your thumbnail alignment in slider
+                thumbnailAlignment: ThumbnailAlignment.left,//.right , .bottom
+                thumbnailBorderType: ThumbnailBorderType.all,//.bottom, .all
+                thumbnailBorderWidth: 1.5,//double value
 
-               //set your thumbnail height & width
+                //set corner radius of your thumbnail
+                thumbnailBorderRadius: 2,
+
+                //set your thumbnail height & width
                 //NOTE : if you set ThumbnailShape.circle then set thumbnail width height same
-                thumbnailWidth: 50,
-                thumbnailHeight: 65,
+                thumbnailWidth: 55,
+                thumbnailHeight: 55,
 
                 //set color of current image thumbnail border
                 thumbnailBorderColor: Colors.blue,
 
-                //set radius of your (thumbnailShape)custom thumbnail
-                thumbnailBorderRadius: 10,
-
                 //make you action when user click on image
                 onTap: (index){
                   print("selected index : $index");
+
+                  //for zooming effect on click
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                      galleryZoomSlides(
+
+                        //required fields
+                        arrayImages: arrayImages,
+
+                        //Optional fields
+                        zoomTheme: ZoomTheme.theme3,//.theme1, .theme2, .theme3
+                        selectedImagePosition: index,
+                        selectedThumbnailColor: Colors.blue,
+                      )
+                  )
+                  );
+
                 },
              ),
 

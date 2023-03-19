@@ -1,3 +1,6 @@
+## 1.0.7
+- set thumbnail image in any shape without limitation 
+
 ## 1.0.6
 - Now we can set thumbnail border radius
 
