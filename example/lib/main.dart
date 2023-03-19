@@ -61,6 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
           children: <Widget>[
 
+            const SizedBox(height: 10,),
+
             flexi_productimage_slider(
                 arrayImages: [
                   "https://i.ibb.co/bFx0p10/7.jpg",
@@ -73,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 thumbnailPosition: ThumbnailPosition.LEFT,
                 thumbnailShape: ThumbnailShape.Rectangle,
                 thumbnailWidth: 50,
+                selectedThumbnailBorder: Border.all(width: 1.5,color: Colors.teal),
                 sliderStyle: SliderStyle.Style2,
              ),
 

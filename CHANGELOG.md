@@ -1,6 +1,14 @@
+## 1.0.4
+
+- Now differentiate selected thumbnail
+
+## 1.0.3
+
+- Bug fixes
+
 ## 1.0.2
 
-- Set thumbnail in rectangle also & set thumbnail size also
+- Now thumbnail can also display in rectangle
 
 ## 1.0.1
 

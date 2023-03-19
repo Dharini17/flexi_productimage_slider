@@ -16,6 +16,7 @@ class flexi_productimage_slider extends StatelessWidget{
   final ThumbnailPosition thumbnailPosition;
   final ThumbnailShape thumbnailShape;
   final double thumbnailWidth;
+  final Border selectedThumbnailBorder;
   final SliderStyle sliderStyle;
 
   flexi_productimage_slider({
@@ -25,10 +26,12 @@ class flexi_productimage_slider extends StatelessWidget{
     required this.thumbnailPosition,
     required this.thumbnailShape,
     required this.thumbnailWidth,
+    required this.selectedThumbnailBorder,
     required this.sliderStyle,
   });
 
-  PageController _pageController = PageController(initialPage: 0,);
+  PageController pageController = PageController(initialPage: 0,);
+  ValueNotifier<int> currentPageViewPage = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +67,19 @@ class flexi_productimage_slider extends StatelessWidget{
 
         Positioned(
             left: 0,bottom: 5,right: 0,
-            child: _buildThmbnail(isVertical: false)
+            child: _buildThumbnail(isVertical: false)
         ) :
 
         thumbnailPosition == ThumbnailPosition.LEFT ?
 
         Positioned(
             top: 5,left: 10,bottom: 5,
-            child: _buildThmbnail(isVertical: true)
+            child: _buildThumbnail(isVertical: true)
         )
             :
         Positioned(
             top: 5,right: 10,bottom: 5,
-            child: _buildThmbnail(isVertical: true)
+            child: _buildThumbnail(isVertical: true)
         )
 
 
@@ -92,7 +95,7 @@ class flexi_productimage_slider extends StatelessWidget{
 
           thumbnailPosition == ThumbnailPosition.LEFT ?
           Padding(padding: EdgeInsets.only(left: 5,right: 5),
-            child: _buildThmbnail(isVertical: true),
+            child: _buildThumbnail(isVertical: true),
           ) : const SizedBox(),
 
           Expanded(
@@ -108,7 +111,7 @@ class flexi_productimage_slider extends StatelessWidget{
                   thumbnailPosition == ThumbnailPosition.BOTTOM ?
 
                   Padding(padding: EdgeInsets.only(top: 5,bottom: 5),
-                    child: _buildThmbnail(isVertical: false),
+                    child: _buildThumbnail(isVertical: false),
                   ) : const SizedBox(),
                 ],
               )
@@ -116,7 +119,7 @@ class flexi_productimage_slider extends StatelessWidget{
 
           thumbnailPosition == ThumbnailPosition.RIGHT ?
           Padding(padding: EdgeInsets.only(left: 5,right: 5),
-            child: _buildThmbnail(isVertical: true),
+            child: _buildThumbnail(isVertical: true),
           ) : const SizedBox(),
 
         ],
@@ -125,8 +128,11 @@ class flexi_productimage_slider extends StatelessWidget{
 
   Widget _buildImageSlider(){
     return PageView.builder(
-      controller:_pageController,
+      controller:pageController,
       onPageChanged: (int currentPage){
+
+        currentPageViewPage.value = currentPage;
+        currentPageViewPage.notifyListeners();
 
       },
       itemCount: arrayImages.length,
@@ -150,7 +156,7 @@ class flexi_productimage_slider extends StatelessWidget{
     );
   }
 
-  Widget _buildThmbnail({required bool isVertical}){
+  Widget _buildThumbnail({required bool isVertical}){
     return Container(
       width: isVertical ? 50 : double.infinity,
       height: isVertical ? double.infinity : 55,
@@ -165,19 +171,30 @@ class flexi_productimage_slider extends StatelessWidget{
                 InkWell(
                   onTap: (){
 
-                    _pageController.animateToPage(index, duration: Duration(milliseconds: 400), curve: Curves.linear);
+                    pageController.animateToPage(index, duration: Duration(milliseconds: 400), curve: Curves.linear);
+                    currentPageViewPage.value = index;
+                    currentPageViewPage.notifyListeners();
 
                   },
-                  child: Container(height:thumbnailShape == ThumbnailShape.Rectangle ? (thumbnailWidth + (thumbnailWidth/2)) : thumbnailWidth ,width: thumbnailWidth,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ?  (45/2) : 0),
-                        //border: Border.all(width: 1,color: Theme.of(context).colorScheme.background)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ? (45/2) : 0),
-                      child: funcDisplayImage(arrayImages[index],boxFit),
-                    ),
-                  ),
+                  child:
+
+                  ValueListenableBuilder(
+                      valueListenable: currentPageViewPage,
+                      builder: (BuildContext context, currIndexValue, child) {
+
+                        return Container(
+                          height:thumbnailShape == ThumbnailShape.Rectangle ? (thumbnailWidth + (thumbnailWidth/2)) : thumbnailWidth ,width: thumbnailWidth,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ?  (45/2) : 0),
+                              border: currIndexValue != index ? Border.all(width: 0 ,color: Colors.transparent) : selectedThumbnailBorder
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ? (45/2) : 0),
+                            child: funcDisplayImage(arrayImages[index],boxFit),
+                          ),
+                        );
+                      })
+
                 ),
                 const SizedBox(height: 10,)
               ],

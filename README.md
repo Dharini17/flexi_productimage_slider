@@ -79,9 +79,11 @@ dependencies:
 
     thumbnailPosition : where you want present the rest of the images to end user
 
-    thumbnailShape : set thumbnail shapes either sqaure or circle
+    thumbnailShape : set thumbnail shapes - sqaure , circle , rectangle
 
     thumbnailWidth: set thumbnail width
+
+    selectedThumbnailBorder: set thumbnail border
 
     sliderStyle : Style1 : display thumbnails on the image (left , right , bottom)
                   Style2 : display thumbnails next to image (left , right , bottom)
@@ -90,20 +92,21 @@ dependencies:
 
 import 'package:flexi_productimage_slider/flexi_productimage_slider.dart';
 
-        flexi_productimage_slider(
-                    arrayImages: [
-                                    "https://i.ibb.co/bFx0p10/7.jpg",
-                                    "https://i.ibb.co/SPwd6rJ/8.jpg",
-                                    "https://i.ibb.co/GP2GFTG/6.jpg",
-                                    "https://i.ibb.co/s3JYgx1/5.jpg",
-                                  ],
-                    aspectRatio: 16/9,
-                    boxFit: BoxFit.cover,
-                    thumbnailPosition: ThumbnailPosition.LEFT,
-                    thumbnailShape: ThumbnailShape.Circle,
-                    thumbnailWidth: 50,
-                    sliderStyle: SliderStyle.Style2
-        ),
+            flexi_productimage_slider(
+                        arrayImages: [
+                        "https://i.ibb.co/bFx0p10/7.jpg",
+                        "https://i.ibb.co/SPwd6rJ/8.jpg",
+                        "https://i.ibb.co/GP2GFTG/6.jpg",
+                        "https://i.ibb.co/s3JYgx1/5.jpg",
+                        ],
+                        aspectRatio: 16/9,
+                        boxFit: BoxFit.cover,
+                        thumbnailPosition: ThumbnailPosition.LEFT,
+                        thumbnailShape: ThumbnailShape.Rectangle,
+                        thumbnailWidth: 50,
+                        selectedThumbnailBorder: Border.all(width: 1.5,color: Colors.teal),
+                        sliderStyle: SliderStyle.Style2,
+            ),
         ...
 
 
