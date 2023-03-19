@@ -53,6 +53,9 @@
       </td> 
     </tr>
 <tr>
+ <td>
+         <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/12_1.png">
+      </td>  
       <td>
          <img width="250px" src="https://raw.githubusercontent.com/Dharini17/flexi_productimage_slider/master/assets/13.png">
       </td>          

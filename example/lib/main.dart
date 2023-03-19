@@ -71,8 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 aspectRatio: 16/9,
                 boxFit: BoxFit.cover,
                 thumbnailPosition: ThumbnailPosition.LEFT,
-                thumbnailShape: ThumbnailShape.Circle,
-                sliderStyle: SliderStyle.Style2),
+                thumbnailShape: ThumbnailShape.Rectangle,
+
+                thumbnailWidth: 50, sliderStyle: SliderStyle.Style2,
+             ),
 
 
           ],

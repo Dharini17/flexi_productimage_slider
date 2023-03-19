@@ -1,11 +1,10 @@
-import 'package:flexi_productimage_slider/src/ZoomView.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 
 enum ThumbnailPosition { LEFT, RIGHT, BOTTOM }
 
-enum ThumbnailShape { Circle, Square, }
+enum ThumbnailShape { Circle, Square, Rectangle }
 
 enum SliderStyle { Style1, Style2, }
 
@@ -16,6 +15,7 @@ class flexi_productimage_slider extends StatelessWidget{
   final BoxFit boxFit;
   final ThumbnailPosition thumbnailPosition;
   final ThumbnailShape thumbnailShape;
+  final double thumbnailWidth;
   final SliderStyle sliderStyle;
 
   flexi_productimage_slider({
@@ -24,6 +24,7 @@ class flexi_productimage_slider extends StatelessWidget{
     required this.boxFit,
     required this.thumbnailPosition,
     required this.thumbnailShape,
+    required this.thumbnailWidth,
     required this.sliderStyle,
   });
 
@@ -135,11 +136,13 @@ class flexi_productimage_slider extends StatelessWidget{
 
           InkWell(
             onTap: (){
+
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ZoomView(arrayImages : arrayImages,currentIndex : index)));
-            },
+                      builder: (context) => gallery_zoom_slides(arrayImages: arrayImages, currentIndex: index)));
+
+              },
             child: funcDisplayImage(arrayImages[index],boxFit),
           );
 
@@ -162,17 +165,16 @@ class flexi_productimage_slider extends StatelessWidget{
                 InkWell(
                   onTap: (){
 
-                    // _pageController.jumpToPage(index);
                     _pageController.animateToPage(index, duration: Duration(milliseconds: 400), curve: Curves.linear);
 
                   },
-                  child: Container(height: 45,width: 45,
+                  child: Container(height:thumbnailShape == ThumbnailShape.Rectangle ? (thumbnailWidth + (thumbnailWidth/2)) : thumbnailWidth ,width: thumbnailWidth,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Square ?  5 : (45/2)),
-                        border: Border.all(width: 1,color: Theme.of(context).colorScheme.background)
+                        borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ?  (45/2) : 0),
+                        //border: Border.all(width: 1,color: Theme.of(context).colorScheme.background)
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Square ?  5 : (45/2)),
+                      borderRadius: BorderRadius.circular( thumbnailShape == ThumbnailShape.Circle ? (45/2) : 0),
                       child: funcDisplayImage(arrayImages[index],boxFit),
                     ),
                   ),
