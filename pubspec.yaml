@@ -1,6 +1,6 @@
 name: flexi_productimage_slider
 description: An image slider to represent your products..:)
-version: 1.0.8
+version: 1.0.9
 repository: https://github.com/Dharini17/flexi_productimage_slider
 documentation: https://pub.dev/documentation/flexi_productimage_slider
 
@@ -16,3 +16,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+screenshots:
+  - description: 'Preview'
+    path: screenshots/preview.png

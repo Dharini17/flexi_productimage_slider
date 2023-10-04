@@ -39,7 +39,7 @@
 
 ```yaml
 dependencies:
-  flexi_productimage_slider: 1.0.8
+  flexi_productimage_slider: 1.0.9
 ```
 
 ```dart

@@ -1,3 +1,6 @@
+## 1.0.9
+- Bug Fixing
+
 ## 1.0.8
 - set default image position 
 
