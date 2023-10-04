@@ -182,10 +182,9 @@ class flexiProductimageSlider extends StatelessWidget{
                           children: [
                             InkWell(
                                 onTap: (){
-
-                                  pageController.animateToPage(index, duration: Duration(milliseconds: 400), curve: Curves.linear);
-                                  currentPageViewPage.value = index;
+                                 currentPageViewPage.value = index;
                                   currentPageViewPage.notifyListeners();
+                                  pageController.jumpToPage(index);
 
                                 },
                                 child:

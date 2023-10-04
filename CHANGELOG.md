@@ -1,17 +1,17 @@
-## 1.0.9
-- Bug Fixing
+## 1.0.9 & 1.1.0
+- Technical bug Fixing
 
 ## 1.0.8
-- set default image position 
+- Set default image position 
 
 ## 1.0.7
-- set thumbnail image in any shape without limitation 
+- Set thumbnail image in any shape without limitation 
 
 ## 1.0.6
 - Now we can set thumbnail border radius
 
 ## 1.0.5
-- more thumbnail customization functions & onTap access on image
+- More thumbnail customization functions & onTap access on image
 
 ## 1.0.4 
 
